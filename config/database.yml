@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: postgres
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: db_development
+
+test:
+  <<: *default
+  database: db_test
+
+#production:
+#  <<: *default
+#  database: jamburjesas_production
+#  username: jamburjesas
+#  password: <%= ENV['JAMBURJESAS_DATABASE_PASSWORD'] %>

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    working_dir: /jamburjesas
+    build: .
+    volumes:
+      - "./:/jamburjesas"
+    command: "bin/rails s puma -b '0.0.0.0' -p 3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+  postgres:
+    image: postgres:9.6
+    volumes:
+      - "./.data/postgres:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
